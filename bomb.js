@@ -1,15 +1,15 @@
 document.addEventListener('DOMContentLoaded', function(){
     console.log("content loaded");
     // dom refs
-    let body = document.querySelector('body');
+    let body = document.querySelector('html');
     let wirebox = document.getElementById('wirebox');
     let resetBtn = document.getElementById('reset');
     let timer = document.getElementById('timer');
 
     //game logic variables
-    const STARTING_TIME = 30;
+    const STARTING_TIME = 10;
     let remainingTime = 0;
-    let gameOver = false;
+    let gameOver = true;
     let countdown = null; //will hold countdown interval
 
     let wiresToCut = [];
@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     function reset() {
         console.log("clicked reset");
+        gameOver = false;
         init();
     }
 
@@ -46,6 +47,23 @@ document.addEventListener('DOMContentLoaded', function(){
 
     function wireClick(e) {
         console.log(e);
+        let color = e.target.id;
+        if (!gameOver && !wireState[color]){
+            e.target.src="./img/cut-" + color + "-wire.png";
+            wireState[color] = true;
+            let wireIndex = wiresToCut.indexOf(color);
+            //if wire has an index, it needs to be cut
+            if (wireIndex > -1){
+                console.log("Correct!");
+                wiresToCut.splice(wireIndex, 1);
+                if (wiresToCut.length < 1){
+                    endGame(true);
+                    console.log("You won!");
+                }
+            } else {
+                endGame(false);
+            }
+        }
     }
 
     function updateClock(){

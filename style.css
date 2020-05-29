@@ -1,6 +1,42 @@
-html,
-body {
+html {
+  background-image: url("./img/simcity.jpg");
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
   margin: 0;
   padding: 0;
   text-align: center;
+  font-size: 2.5em;
+  padding-top: 50px;
+}
+
+.gamespace {
+  width: 200px;
+  vertical-align: middle;
+  margin: 0 auto;
+  background: black;
+  border: 20px solid black;
+}
+
+p {
+  color: white;
+  font-family: 'VT323', monospace;
+  margin: 0 0 15px 0;
+}
+
+button {
+  width: 90%;
+  height: 40px;
+}
+
+.flat {
+  background-image: url("./img/explosion.jpg");
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: #33FF33;
 }

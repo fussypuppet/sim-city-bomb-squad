@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function(){
     console.log("content loaded");
     // dom refs
     let body = document.querySelector('html');
-    let wirebox = document.getElementById('wirebox');
+    let wireBox = document.getElementById('wirebox');
     let resetBtn = document.getElementById('reset');
     let timer = document.getElementById('timer');
 
@@ -28,6 +28,16 @@ document.addEventListener('DOMContentLoaded', function(){
     function reset() {
         console.log("clicked reset");
         gameOver = false;
+        timer.classList.remove("green");
+        body.classList.remove("flat");
+        for (let wire in wireState){
+            wireState[wire] = false;
+        }
+        wiresToCut = [];
+        for (let i = 0; i < wirebox.children.length; i++){
+            let color = wireBox.children[i].id;
+            wireBox.children[i].src = "./img/uncut-" + color + "-wire.png";
+        }
         init();
     }
 
